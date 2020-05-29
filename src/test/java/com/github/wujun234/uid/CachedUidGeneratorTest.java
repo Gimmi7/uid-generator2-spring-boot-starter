@@ -25,11 +25,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author yutianbao
  * @author wujun
  */
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 public class CachedUidGeneratorTest {
-    private static final int SIZE = 7000000; // 700w
+    private static final int SIZE = 70000; // 700w
     private static final boolean VERBOSE = false;
     private static final int THREADS = Runtime.getRuntime().availableProcessors() << 1;
 
