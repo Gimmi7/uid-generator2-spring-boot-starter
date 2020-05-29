@@ -5,8 +5,6 @@ uid-generator-spring-boot-starter
 - 针对时钟回拨，提供了修正选项（默认启用，可通过配置关闭），小于阈值直接休眠，大于阈值更改机器号
 - 对机器id用尽提供了复用策略：取余
 - 解除id位数限制，由“必须64位”改为“不大于64位”，可根据需要获取更短id
-- PaddedAtomicLong重构为@Contended注解写法，简化代码
-
 
 参数均可通过Spring进行自定义，默认参数为：
 - delta seconds (30 bits)  
@@ -17,6 +15,12 @@ uid-generator-spring-boot-starter
 每秒下的并发序列，7 bits可支持每秒128个并发，超出128则等待下一秒
 
 默认参数下，初始id长度为12，最终随时间增加，最长到16位
+
+
+####基于 [uid-generator-spring-boot-starter](https://github.com/wujun234/uid-generator-spring-boot-starter), 做了以下改动:
+- PaddedAtomicLong重构为@Contended注解写法，简化代码
+
+
 
 
 Quick Start
