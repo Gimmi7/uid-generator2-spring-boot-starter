@@ -17,7 +17,6 @@ package com.github.wujun234.uid.buffer;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.github.wujun234.uid.utils.PaddedAtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;

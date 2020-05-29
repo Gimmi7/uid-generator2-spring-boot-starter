@@ -5,6 +5,8 @@ uid-generator-spring-boot-starter
 - 针对时钟回拨，提供了修正选项（默认启用，可通过配置关闭），小于阈值直接休眠，大于阈值更改机器号
 - 对机器id用尽提供了复用策略：取余
 - 解除id位数限制，由“必须64位”改为“不大于64位”，可根据需要获取更短id
+- PaddedAtomicLong重构为@Contended注解写法，简化代码
+
 
 参数均可通过Spring进行自定义，默认参数为：
 - delta seconds (30 bits)  
@@ -20,9 +22,7 @@ uid-generator-spring-boot-starter
 Todo List
 ------------
 
-- 解决设计缺陷，目前采用的是单生产者批量生产，没有必要使用flags buffer
 - DefaultUidGenerator中时钟回拨时生成fakeWorkerId写入数据库
-- PaddedAtomicLong重构为@Contended注解写法，简化代码
 
 Quick Start
 ------------
