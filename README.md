@@ -19,11 +19,6 @@ uid-generator-spring-boot-starter
 默认参数下，初始id长度为12，最终随时间增加，最长到16位
 
 
-Todo List
-------------
-
-- DefaultUidGenerator中时钟回拨时生成fakeWorkerId写入数据库
-
 Quick Start
 ------------
 
