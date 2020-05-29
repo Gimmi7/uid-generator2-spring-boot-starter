@@ -24,11 +24,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author yutianbao
  * @author wujun
  */
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 public class DefaultUidGeneratorTest {
-    private static final int SIZE = 100000; // 10w
+    private static final int SIZE = 1000; // 10w
     private static final boolean VERBOSE = true;
     private static final int THREADS = Runtime.getRuntime().availableProcessors() << 1;
 

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wujun234.uid.worker;
+package com.github.wujun234.uid.enums;
 
-import com.github.wujun234.uid.utils.ValuedEnum;
+import com.github.wujun234.uid.enums.ValuedEnum;
 
 /**
  * WorkerNodeType

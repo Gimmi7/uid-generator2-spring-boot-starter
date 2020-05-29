@@ -15,6 +15,7 @@
  */
 package com.github.wujun234.uid.worker;
 
+import com.github.wujun234.uid.enums.WorkerNodeType;
 import com.github.wujun234.uid.worker.dao.WorkerNodeDAO;
 import com.github.wujun234.uid.worker.entity.WorkerNodeEntity;
 import com.github.wujun234.uid.utils.DockerUtils;

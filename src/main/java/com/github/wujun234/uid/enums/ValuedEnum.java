@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wujun234.uid.utils;
+package com.github.wujun234.uid.enums;
+
+import com.github.wujun234.uid.utils.EnumUtils;
 
 /**
  * {@code ValuedEnum} defines an enumeration which is bounded to a value, you

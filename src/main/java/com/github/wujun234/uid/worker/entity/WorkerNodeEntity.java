@@ -17,7 +17,7 @@ package com.github.wujun234.uid.worker.entity;
 
 import java.util.Date;
 
-import com.github.wujun234.uid.worker.WorkerNodeType;
+import com.github.wujun234.uid.enums.WorkerNodeType;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 

@@ -15,6 +15,7 @@
  */
 package com.github.wujun234.uid.utils;
 
+import com.github.wujun234.uid.enums.ValuedEnum;
 import org.springframework.util.Assert;
 
 /**
