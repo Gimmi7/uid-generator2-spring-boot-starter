@@ -1,5 +1,11 @@
 package com.github.wujun234.uid;
 
+import com.github.wujun234.uid.impl.DefaultUidGenerator;
+import org.apache.commons.lang.StringUtils;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,16 +13,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.github.wujun234.uid.impl.DefaultUidGenerator;
-import org.apache.commons.lang.StringUtils;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 /**
  * Test for {@link DefaultUidGenerator}
@@ -24,9 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author yutianbao
  * @author wujun
  */
-//@Ignore
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+@SpringBootTest
 public class DefaultUidGeneratorTest {
     private static final int SIZE = 1000; // 10w
     private static final boolean VERBOSE = true;
@@ -76,7 +73,7 @@ public class DefaultUidGeneratorTest {
         }
 
         // Check generate 10w times
-        Assert.assertEquals(SIZE, control.get());
+        assertEquals(SIZE, control.get());
 
         // Check UIDs are all unique
         checkUniqueID(uidSet);
@@ -105,8 +102,8 @@ public class DefaultUidGeneratorTest {
         uidSet.add(uid);
 
         // Check UID is positive, and can be parsed
-        Assert.assertTrue(uid > 0L);
-        Assert.assertTrue(StringUtils.isNotBlank(parsedInfo));
+        assertTrue(uid > 0L);
+        assertTrue(StringUtils.isNotBlank(parsedInfo));
 
         if (VERBOSE) {
             System.out.println(Thread.currentThread().getName() + " No." + index + " >>> " + parsedInfo);
@@ -118,7 +115,7 @@ public class DefaultUidGeneratorTest {
      */
     private void checkUniqueID(Set<Long> uidSet) {
         System.out.println(uidSet.size());
-        Assert.assertEquals(SIZE, uidSet.size());
+        assertEquals(SIZE, uidSet.size());
     }
 
 }

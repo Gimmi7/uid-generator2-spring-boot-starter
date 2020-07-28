@@ -6,12 +6,10 @@
 
     <groupId>com.github.wujun234</groupId>
     <artifactId>uid-generator-spring-boot-starter</artifactId>
-    <version>1.0.2.RELEASE</version>
+    <version>2.1.3.RELEASE</version>
     <packaging>jar</packaging>
 
     <name>uid-generator-spring-boot-starter</name>
-    <description>An unique id generator based on baidu uid-generator</description>
-    <url>https://github.com/wujun234/uid-generator-spring-boot-starter</url>
 
     <!-- Properties -->
     <properties>
@@ -19,27 +17,6 @@
         <jdk.version>1.8</jdk.version>
         <skipTests>true</skipTests>
     </properties>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <scm>
-        <url>https://github.com/wujun234/uid-generator-spring-boot-starter</url>
-        <connection>https://github.com/wujun234/uid-generator-spring-boot-starter.git</connection>
-        <developerConnection>https://github.com/wujun234</developerConnection>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>wujun</name>
-            <email>wujun234@gmail.com</email>
-        </developer>
-    </developers>
 
     <!-- Dependencies -->
     <dependencies>
@@ -49,12 +26,13 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
-        <!-- mybatis-spring-boot-starter -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.2</version>
+            <version>2.1.3</version>
         </dependency>
+
 
         <!-- Apache Commons -->
         <dependency>
@@ -68,6 +46,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -81,7 +65,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.3.RELEASE</version>
+                <version>2.3.1.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -104,69 +88,17 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <!-- Source -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- Javadoc -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <configuration>
-                            <!-- 添加这个压制JavaDoc检查 -->
-                            <doclint>none</doclint>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- GPG -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-    </profiles>
+    <!--设置deploy的地址-->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://nexus.ushareit.me/repository/maven-releases/</url>
+            <name>release</name>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://nexus.ushareit.me/repository/maven-snapshots/</url>
+            <name>snapshots</name>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
