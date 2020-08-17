@@ -14,6 +14,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -69,14 +70,17 @@ public class UidAutoConfigure {
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactoryUid() throws Exception {
-        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-        factoryBean.setDataSource(uidDatasource());
-        return factoryBean.getObject();
+    @ConfigurationProperties(prefix = "mybatis.configuration")
+    public org.apache.ibatis.session.Configuration configurationUid() {
+        return new org.apache.ibatis.session.Configuration();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplateUid() throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactoryUid());
+    public SqlSessionFactory sqlSessionFactoryUid() throws Exception {
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        factoryBean.setDataSource(uidDatasource());
+        factoryBean.setConfiguration(configurationUid());
+        return factoryBean.getObject();
     }
+
 }
