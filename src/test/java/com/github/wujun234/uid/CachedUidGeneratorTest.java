@@ -32,6 +32,12 @@ public class CachedUidGeneratorTest {
     @Autowired
     private CachedUidGenerator cachedUidGenerator;
 
+    @Test
+    void testWorkerId() {
+        long id = cachedUidGenerator.getUID();
+        System.out.println(id);
+    }
+
     /**
      * Test for serially generate
      *

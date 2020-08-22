@@ -33,7 +33,7 @@ public interface WorkerNodeDAO {
 
     /**
      * Get {@link WorkerNodeEntity} by node host
-     * 
+     *
      * @param host
      * @param port
      * @return
@@ -54,7 +54,7 @@ public interface WorkerNodeDAO {
 
     /**
      * Add {@link WorkerNodeEntity}
-     * 
+     *
      * @param workerNodeEntity
      */
     @Insert("INSERT INTO WORKER_NODE" +
@@ -71,7 +71,7 @@ public interface WorkerNodeDAO {
             "#{launchDate}," +
             "NOW()," +
             "NOW())")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void addWorkerNode(WorkerNodeEntity workerNodeEntity);
 
 }
