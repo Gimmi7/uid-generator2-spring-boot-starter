@@ -17,12 +17,14 @@ package com.github.wujun234.uid.worker;
 
 import com.github.wujun234.uid.enums.WorkerNodeType;
 import com.github.wujun234.uid.worker.dao.WorkerNodeDAO;
+import com.github.wujun234.uid.worker.dao.WorkerNodeNativeDao;
 import com.github.wujun234.uid.worker.entity.WorkerNodeEntity;
 import com.github.wujun234.uid.utils.DockerUtils;
 import com.github.wujun234.uid.utils.NetUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -36,8 +38,10 @@ import javax.annotation.Resource;
 public class DisposableWorkerIdAssigner implements WorkerIdAssigner {
     private static final Logger LOGGER = LoggerFactory.getLogger(DisposableWorkerIdAssigner.class);
 
-    @Resource
-    private WorkerNodeDAO workerNodeDAO;
+//    @Resource
+//    private WorkerNodeDAO workerNodeDAO;
+    @Autowired
+    private WorkerNodeNativeDao nativeDao;
 
     /**
      * Assign worker id base on database.<p>
@@ -46,27 +50,29 @@ public class DisposableWorkerIdAssigner implements WorkerIdAssigner {
      *
      * @return assigned worker id
      */
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     @Override
     public long assignWorkerId() {
         // build worker node entity
         WorkerNodeEntity workerNodeEntity = buildWorkerNode();
 
         // add worker node for new (ignore the same IP + PORT)
-        workerNodeDAO.addWorkerNode(workerNodeEntity);
+//        workerNodeDAO.addWorkerNode(workerNodeEntity);
+        nativeDao.addWorkerNode(workerNodeEntity);
         LOGGER.info("Add worker node:" + workerNodeEntity);
 
         return workerNodeEntity.getId();
     }
 
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     @Override
     public long assignFakeWorkerId() {
         // build fake worker node entity
         WorkerNodeEntity workerNodeEntity = this.buildFakeWorkerNode();
 
         //add worker node for new
-        workerNodeDAO.addWorkerNode(workerNodeEntity);
+//        workerNodeDAO.addWorkerNode(workerNodeEntity);
+        nativeDao.addWorkerNode(workerNodeEntity);
 
         return workerNodeEntity.getId();
     }

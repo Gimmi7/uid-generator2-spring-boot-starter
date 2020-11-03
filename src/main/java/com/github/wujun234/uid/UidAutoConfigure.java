@@ -6,6 +6,7 @@ import com.github.wujun234.uid.impl.UidDatasourceProperties;
 import com.github.wujun234.uid.impl.UidProperties;
 import com.github.wujun234.uid.worker.DisposableWorkerIdAssigner;
 import com.github.wujun234.uid.worker.WorkerIdAssigner;
+import com.github.wujun234.uid.worker.dao.WorkerNodeNativeDao;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -18,6 +19,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 
 import javax.sql.DataSource;
@@ -29,8 +31,9 @@ import javax.sql.DataSource;
  * @date 2019.02.20 10:57
  */
 @Configuration
+@Import(value = WorkerNodeNativeDao.class)
 @ConditionalOnClass({DefaultUidGenerator.class, CachedUidGenerator.class})
-@MapperScan(value = {"com.github.wujun234.uid.worker.dao"}, sqlSessionFactoryRef = "sqlSessionFactoryUid")
+//@MapperScan(value = {"com.github.wujun234.uid.worker.dao"}, sqlSessionFactoryRef = "sqlSessionFactoryUid")
 @EnableConfigurationProperties({UidProperties.class, UidDatasourceProperties.class})
 public class UidAutoConfigure {
 
@@ -59,7 +62,7 @@ public class UidAutoConfigure {
         return new DisposableWorkerIdAssigner();
     }
 
-    @Bean(name = "uidDatasource")
+//    @Bean(name = "uidDatasource")
     public DataSource uidDatasource() {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName(datasourceProperties.getDriverClassName());
@@ -75,7 +78,7 @@ public class UidAutoConfigure {
         return new org.apache.ibatis.session.Configuration();
     }
 
-    @Bean
+//    @Bean
     public SqlSessionFactory sqlSessionFactoryUid() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(uidDatasource());

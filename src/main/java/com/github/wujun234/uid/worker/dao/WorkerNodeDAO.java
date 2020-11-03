@@ -22,13 +22,13 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
-/**
- * DAO for M_WORKER_NODE
- *
- * @author yutianbao
- * @author wujun
- */
-@Repository
+///**
+// * DAO for M_WORKER_NODE
+// *
+// * @author yutianbao
+// * @author wujun
+// */
+//@Repository
 public interface WorkerNodeDAO {
 
     /**
